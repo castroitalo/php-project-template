@@ -2,4 +2,4 @@
 
 PHP project template using MVC structure and Composer
 
-<i>Delete the `delte.txt` files</i>
+<i>Delete the `delete.txt` files</i>
