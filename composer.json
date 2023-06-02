@@ -1,0 +1,27 @@
+{
+    "name": "project/project",
+    "description": "description", 
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "One author",
+            "email": "author@email",
+            "role": "authorRole"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Support/Config.php",
+            "source/Support/Helpers.php"
+        ]
+    },
+    "require": {
+
+    }
+}
