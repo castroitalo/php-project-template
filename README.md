@@ -1,5 +1,3 @@
-# PHP-project-template
+# PHP Project Template
 
-PHP project template using MVC structure and Composer
-
-<i>Delete the `delete.txt` files</i>
+PHP project template based on [PHP The Right Way - Common Directory structure](https://phptherightway.com/#common_directory_structure)

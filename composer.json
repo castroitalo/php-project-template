@@ -1,12 +1,12 @@
 {
-    "name": "project/project",
-    "description": "description", 
+    "name": "projectname/projectnamewikant",
+    "description": "Project description", 
     "minimum-stability": "stable",
     "authors": [
         {
-            "name": "One author",
-            "email": "author@email",
-            "role": "authorRole"
+            "name": "Author name",
+            "email": "authoremail@gmail.com",
+            "role": "author role"
         }
     ],
     "config": {
@@ -14,14 +14,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Source\\": "source/"
+            "src\\": "src/"
         },
         "files": [
-            "source/Support/Config.php",
-            "source/Support/Helpers.php"
+            "config/config.php",
+            "src/helpers/helpers.php"
         ]
     },
+    "require-dev": {
+        "fakerphp/faker": "^1.23"
+    },
     "require": {
-
+        "league/plates": "^3.5"
     }
 }
