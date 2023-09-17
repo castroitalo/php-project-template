@@ -1,1 +1,1 @@
-front-end assets
+Front-end assets

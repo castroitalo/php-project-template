@@ -1,3 +1,3 @@
 <?php 
 
-// web server files
+echo "Hello World";
