@@ -14,7 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-            "src\\": "src/"
+            "src\\": "src/",
+            "tests\\": "test/"
         },
         "files": [
             "config/config.php",
@@ -24,5 +25,6 @@
     "require-dev": {
     },
     "require": {
+        "vlucas/phpdotenv": "^5.5"
     }
 }
