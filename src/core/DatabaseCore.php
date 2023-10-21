@@ -8,25 +8,25 @@ use PDO;
 use PDOException;
 
 /**
- * Class Database
+ * Class DatabaseCore
  * 
  * @package src\core
  */
-final class Database
+final class DatabaseCore
 {
     /**
-     * Singleton database connection
+     * Database connection
      *
      * @var PDO|null
      */
-    private static ?PDO $connection = null;
+    private static ?PDO $databaseConnection = null;
 
     /**
-     * PDO options
+     * PDO settings
      *
      * @var array
      */
-    private static array $pdoOptions = [
+    private static array $pdoSettings = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
         PDO::ATTR_CASE => PDO::CASE_NATURAL
@@ -49,25 +49,25 @@ final class Database
     }
 
     /**
-     * Create a new singleton database connection is there is none and return it
+     * Get PDO database connection object
      *
      * @return PDO
      */
-    public static function getConnection(): PDO
+    public static function getDatabaseConnection(): PDO
     {
-        if (is_null(self::$connection)) {
+        if (is_null(self::$databaseConnection)) {
             try {
-                self::$connection = new PDO(
+                self::$databaseConnection = new PDO(
                     "mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"] . ";port=" . $_ENV["DB_PORT"],
                     $_ENV["DB_USER"],
                     $_ENV["DB_PASSWORD"],
-                    self::$pdoOptions
+                    self::$pdoSettings
                 );
             } catch (PDOException $ex) {
                 die($ex->getMessage());
             }
         }
 
-        return self::$connection;
+        return self::$databaseConnection;
     }
 }
