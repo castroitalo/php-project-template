@@ -4,13 +4,6 @@
     "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",
-    "authors": [
-        {
-            "name": "Author name",
-            "email": "authoremail@gmail.com",
-            "role": "author role"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "src\\": "src/",
