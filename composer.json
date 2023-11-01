@@ -2,8 +2,13 @@
     "name": "projectname/projectnamewikant",
     "description": "Project description", 
     "type": "project",
-    "license": "MIT",
     "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Italo Castro",
+            "role": "developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "src\\": "src/",
