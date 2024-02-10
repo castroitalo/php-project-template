@@ -1,29 +1,37 @@
 {
-    "name": "projectname/projectnamewikant",
-    "description": "Project description", 
+    "name": "appname/appname",
+    "description": "App description",
     "type": "project",
-    "minimum-stability": "stable",
-    "authors": [
-        {
-            "name": "Italo Castro",
-            "role": "developer"
-        }
-    ],
+    "license": "GPL",
     "autoload": {
         "psr-4": {
-            "src\\": "src/",
-            "tests\\": "test/"
+            "src\\": "src/"
         },
         "files": [
-            "config/config.php",
-            "src/helpers/helpers.php"
+            "config/app/config.php",
+            "src/helpers/helper.php"
         ]
     },
-    "require-dev": {
-        "phpunit/phpunit": "^10.4"
+    "scripts": {
+        "run_tests": "vendor/bin/phpunit --testsuit unit --colors --testdox tests/",
+        "run_database_connection_tests": "vendor/bin/phpunit --testsuit unit --colors --testdox tests/src/core/DatabaseConnectionTest.php",
+        "run_route_tests": "vendor/bin/phpunit --testsuit unit --colors --testdox tests/src/models/RouteTest.php",
+        "run_router_tests": "vendor/bin/phpunit --testsuit unit --colors --testdox tests/src/core/RouterTest.php",
+        "run_sass": "sass --watch public/static/styles/scss:public/static/styles/css"
     },
+    "authors": [
+        {
+            "name": "app author name",
+            "role": "app author role"
+        }
+    ],
+    "minimum-stability": "stable",
     "require": {
-        "vlucas/phpdotenv": "^5.5",
+        "vlucas/phpdotenv": "^5.6",
         "league/plates": "^3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.3",
+        "mockery/mockery": "^1.6"
     }
 }

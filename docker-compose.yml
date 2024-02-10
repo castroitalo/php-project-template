@@ -1,22 +1,26 @@
 version: "3.0"
 
 services:
-  mysql:
+
+  # Database for development
+  mariadb:
     image: mariadb:10.4.31
     environment:
       - MYSQL_USER=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=app
+      - MYSQL_DATABASE=<database_name>
     ports:
       - 3306:3306
-  app:
-    image: app/stable:1.0
+
+  # App
+  appname:
+    image: <image_name>/dev:0.1
     volumes:
       - ./:/var/www/html
     ports:
       - 8080:80
     links:
-      - mysql
+      - mariadb
     depends_on:
-      - mysql
+      - mariadb
     tty: true

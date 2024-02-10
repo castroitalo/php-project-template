@@ -1,15 +1,21 @@
 <?php
 
-use src\controllers\HomeController;
-use src\controllers\NotFoundController;
-use src\core\RouterCore;
+declare(strict_types=1);
 
+use src\controllers\HomeController;
+use src\core\App;
+use src\core\Response;
+
+// Imports bootstrap file
 require_once __DIR__ . "/bootstrap.php";
 
-$router = new RouterCore();
+try {
+    $app = new App();
 
-$router->get("/", [HomeController::class, "homepage"]);
+    $app->router->get("/", [HomeController::class, "homepage"]);
 
-$router->get("/notfound", [NotFoundController::class, "notFoundPage"]);
-
-$router->handleRequest();
+    $app->run();
+} catch (Exception $ex) {
+    Response::setResponseStatusCode(500);
+    echo "<h1>App is out of service.</h1>";
+}

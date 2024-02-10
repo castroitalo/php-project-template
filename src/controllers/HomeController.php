@@ -1,25 +1,33 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace src\controllers;
 
-use src\core\BaseControllerCore;
+use src\traits\BaseController;
 
 /**
- * Class HomeController
+ * Controller the website's homepage (/)
  * 
  * @package src\controller
+ * @author castroitalo <dev.castro.italo@gmail.com>
+ * @version 1.0.0
+ * @access public
+ * @final
  */
-final class HomeController extends BaseControllerCore
+final class HomeController
 {
+    // Use base controller trait
+    use BaseController;
+
     /**
-     * Homepage controller
+     * Render homepage
      *
+     * @param array|null $parameters
      * @return void
      */
-    public function homepage(): void 
+    public function homepage(?array $parameters = null): void
     {
-        $this->controllerView->render("index.view");
+        $this->view->renderView("base.view");
     }
 }

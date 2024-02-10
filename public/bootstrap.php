@@ -1,9 +1,11 @@
-<?php 
+<?php
 
-// Import composr's autoload
+declare(strict_types=1);
+
+// Imports composer autoload
 require_once __DIR__ . "/../vendor/autoload.php";
 
-// Initialize phpdotenv
-$dotenv = Dotenv\Dotenv::createImmutable(CONF_ROOT_DIR);
+// Load .env file
+$phpdotenv = Dotenv\Dotenv::createImmutable(CONF_GENERAL_ROOT_DIR);
 
-$dotenv->load();
+$phpdotenv->load();
