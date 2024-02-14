@@ -46,18 +46,14 @@ docker compose up -d
 
 <h2 id="files-folder">Files and folder</h2>
 
-Let's start by the beginning. <br>
-
-<h3 id="bin-folder">The bin folder</h3>
-
-The **bin** folder is meant to hold all the PHP scripts. For example, migrations to setup development database are a good case for scripts that should be inside the **bin** folder.
-
-
-<h3 id="config-folder">The config folder</h3>
-
-The **config** folder have the project configurations files. Inside this folder you will find the container configuration folder (`config/container`). <br>
-You will also find the application configuration files inside the `config/app` folder. Files that hold the avaliable HTTP request to the app, flash message types and session keys, etc.
-
-<h3 id="public-folder">The public folder</h3>
-
-// TODO: finish the public folder documentation
+```
+| If a package has a root-level directory for ... | ... then it MUST be named: |
+| ----------------------------------------------- | -------------------------- |
+| command-line executables                        | `bin/`                     |
+| configuration files                             | `config/`                  |
+| documentation files                             | `docs/`                    |
+| web server files                                | `public/`                  |
+| other resource files                            | `resources/`               |
+| PHP source code                                 | `src/`                     |
+| test code                                       | `tests/`                   |
+```
