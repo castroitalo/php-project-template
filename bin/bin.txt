@@ -1,1 +1,0 @@
-All PHP scripts should be on this directory
