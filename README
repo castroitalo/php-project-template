@@ -1,0 +1,17 @@
+# App
+
+App description
+
+### Creating development environment
+
+- Pre-requisites:
+  - [Docker](https://www.docker.com/) installed.
+- Building the project's docker image:
+  - `docker build . -t app:v1.0`
+- Creating a development container:
+  - `docker compose up -d`
+- Installing dependencies:
+  - `docker container exec -it app-app-1 bash`
+  - Go the the root directory (**/var/www/html**) and type: `composer install`
+  - Create a **.env** file based on **.env.template** file.
+- Now it's already possible to run the development version: `https://localhost`
