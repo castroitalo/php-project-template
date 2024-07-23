@@ -16,6 +16,7 @@ services:
     volumes:
       - ./dev/php/config/php.ini:/usr/local/etc/php/php.ini
       - ./app:/var/www/html
+      - ./dev/database/sqlite/development_db.sqlite:/var/www/html/database/development.sqlite
     command: sh -c "composer install && php-fpm"
 
   redis:
