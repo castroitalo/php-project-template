@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Router;
 
+use App\Modules\Error\Controllers\ErrorController;
+
 /**
  * Application routing system
  *
@@ -16,8 +18,17 @@ final class Router
      * Initialize Router components
      */
     public function __construct(
-        private array $definedRoutes = [],
+        private array $definedRoutes = []
     ) {
+        // Defined application's default routes
+        $this->definedRoutes['GET'][] = new Route(
+            $_ENV['ROUTE_ERROR_PAGE_NOT_FOUND'],
+            [ErrorController::class, 'pageNotFound']
+        );
+        $this->definedRoutes['GET'][] = new Route(
+            $_ENV['ROUTE_ERROR_INTERNAL_SERVER_ERROR'],
+            [ErrorController::class, 'pageNotFound']
+        );
     }
 
     /**
@@ -268,18 +279,22 @@ final class Router
         // Execute route controller callback
         $routeControllerCallbackObject = new $routeControllerCallbackClass();
 
-        // Execute controller callback info
         call_user_func([$routeControllerCallbackObject, $routeControllerCallbackMethod], $routeControllerCallbackParameters);
     }
 
+    /**
+     * Handles request URI
+     *
+     * @param string $httpRequestMethod HTTP request method
+     * @param string $requestUri Request URI
+     * @return void
+     */
     public function handleRequest(string $httpRequestMethod, string $requestUri): void
     {
         $requestRoute = $this->getRequestRoute($httpRequestMethod, $requestUri);
 
         if (is_null($requestRoute)) {
-            // TODO: implement HTTP response code (404)
-            echo 'Page not found';
-            exit();
+            $requestRoute = $this->getRequestRoute('GET', '/page-not-found');
         }
 
         $this->executeControllerCallback($requestRoute);
