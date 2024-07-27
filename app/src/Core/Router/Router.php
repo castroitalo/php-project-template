@@ -242,19 +242,47 @@ final class Router
         return null;
     }
 
+    /**
+     * Execute route callbacks, controller and middleware (if there is one).
+     *
+     * @param array $requestRoute Matched request route array
+     * @return void
+     */
+    public function executeControllerCallback(array $requestRoute): void
+    {
+        // Extract controller callback info
+        $routeCallbackInfo                 = $requestRoute['request_route'];
+        $routeControllerCallbackParameters = $requestRoute['request_route_parameters'];
+        $routeControllerCallbackClass      = $routeCallbackInfo->routeControllerCallback[0];
+        $routeControllerCallbackMethod     = $routeCallbackInfo->routeControllerCallback[1];
+        $routeMiddlewareCallbackClass      = $routeCallbackInfo->routeMiddlewareCallback[0] ?? null;
+        $routeMiddlewareCallbackMethod     = $routeCallbackInfo->routeMiddlewareCallback[1] ?? null;
+
+        // Execute route middleware callback
+        if (!is_null($routeMiddlewareCallbackClass)) {
+            $routeMiddlewareCallbackObject = new $routeMiddlewareCallbackClass();
+
+            call_user_func([$routeMiddlewareCallbackObject, $routeMiddlewareCallbackMethod]);
+        }
+
+        // Execute route controller callback
+        $routeControllerCallbackObject = new $routeControllerCallbackClass();
+
+        // Execute controller callback info
+        call_user_func([$routeControllerCallbackObject, $routeControllerCallbackMethod], $routeControllerCallbackParameters);
+    }
 
     public function handleRequest(string $httpRequestMethod, string $requestUri): void
     {
         $requestRoute = $this->getRequestRoute($httpRequestMethod, $requestUri);
 
         if (is_null($requestRoute)) {
+            // TODO: implement HTTP response code (404)
             echo 'Page not found';
             exit();
         }
 
-        echo '<pre>';
-        var_dump($requestRoute);
-        echo '</pre>';
+        $this->executeControllerCallback($requestRoute);
     }
 
     /**
