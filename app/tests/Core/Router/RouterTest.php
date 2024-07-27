@@ -143,4 +143,42 @@ final class RouterTest extends TestCase
         $this->assertEquals($routeMiddlewareCallback, $actualRoute->routeMiddlewareCallback);
         $this->assertNotNull($actualRoute->routeMiddlewareCallback);
     }
+
+    /** @test */
+    public function Router_test_route_matching_non_dynamic_uri(): void
+    {
+        $this->router->get('/get-route', ['ValidControllerCallbackClass', 'validControllerCallbackMethod']);
+
+        $requestRoute = $this->router->getRequestRoute('GET', '/get-route');
+
+        $this->assertArrayHasKey('request_route', $requestRoute);
+        $this->assertInstanceOf(Route::class, $requestRoute['request_route']);
+        $this->assertArrayHasKey('request_route_parameters', $requestRoute);
+        $this->assertEmpty($requestRoute['request_route_parameters']);
+    }
+
+    /** @test */
+    public function Router_test_route_matching_dynamic_uri(): void
+    {
+        $this->router->get('/get-route/{id}/{some_param}', ['ValidControllerCallbackClass', 'validControllerCallbackMethod']);
+
+        $requestRoute = $this->router->getRequestRoute('GET', '/get-route/10/some-parameter');
+
+        $this->assertArrayHasKey('request_route', $requestRoute);
+        $this->assertInstanceOf(Route::class, $requestRoute['request_route']);
+        $this->assertArrayHasKey('request_route_parameters', $requestRoute);
+        $this->assertArrayHasKey('id', $requestRoute['request_route_parameters']);
+        $this->assertEquals('10', $requestRoute['request_route_parameters']['id']);
+        $this->assertEquals('some-parameter', $requestRoute['request_route_parameters']['some_param']);
+    }
+
+    /** @test */
+    public function Router_test_route_matching_not_found(): void
+    {
+        $this->router->get('/get-route', ['ValidControllerCallbackClass', 'validControllerCallbackMethod']);
+
+        $requestRoute = $this->router->getRequestRoute('GET', '/notfound');
+
+        $this->assertNull($requestRoute);
+    }
 }

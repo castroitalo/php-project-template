@@ -221,7 +221,7 @@ final class Router
      * @param string $requestUri Request URI
      * @return null|array
      */
-    private function getRequestRoute(string $httpRequestMethod, string $requestUri): ?array
+    public function getRequestRoute(string $httpRequestMethod, string $requestUri): ?array
     {
         foreach ($this->definedRoutes[$httpRequestMethod] as $route) {
             $uriPattern = preg_replace('/\{[^\}]+\}/', '([^/]+)', $route->routePath);
@@ -251,6 +251,10 @@ final class Router
             echo 'Page not found';
             exit();
         }
+
+        echo '<pre>';
+        var_dump($requestRoute);
+        echo '</pre>';
     }
 
     /**
