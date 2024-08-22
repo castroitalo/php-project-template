@@ -10,13 +10,19 @@ services:
       - /var/www/html/vendor
       - ./app:/var/www/html
 
+  mariadb:
+    image: mariadb:10.4.31
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=app
+
   app:
     build:
       dockerfile: ./dev/php/docker/Dockerfile
     volumes:
       - ./dev/php/config/php.ini:/usr/local/etc/php/php.ini
       - ./app:/var/www/html
-      - ./dev/database/sqlite/development_db.sqlite:/var/www/html/database/development.sqlite
     command: sh -c "composer install && php-fpm"
 
   redis:
