@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Core\Http\Request;
+use App\Core\Http\Response;
 use App\Core\Router\Router;
 use App\Core\Router\Routes;
 use Dotenv\Dotenv;
@@ -13,6 +15,17 @@ mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 mb_http_input();
 mb_regex_encoding('UTF-8');
+
+// Setting up secutiry headers
+Response::setHeader('Content-Security-Policy: default-src \'self\'; script-src \'self\' https://trusted.cdn.com; object-src \'none\'');
+Response::setHeader('Referrer-Policy: no-referrer-when-downgrade');
+Response::setHeader('X-Content-Type-Options: nosniff');
+Response::setHeader('X-Frame-Options: SAMEORIGIN');
+
+if (!Request::isLocalhost()) {
+    Response::setHeader('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+    Response::setHeader('Expect-CT: max-age=86400, enforce, report-uri="https://app.com/report-ct"');
+}
 
 $phpdotenv = Dotenv::createImmutable(dirname(__DIR__, 1));
 

@@ -33,6 +33,8 @@ final class HomepageController extends BaseController
     {
         $model         = new HomepageUsersModel();
         $this->serivce = new HomepageUsersService($model);
+
+        parent::__construct();
     }
 
     /**
@@ -42,7 +44,7 @@ final class HomepageController extends BaseController
      */
     public function homepage(): void
     {
-        echo '<h1>Homepage</h1>';
+        $this->view->renderView('pages/homepage.view');
     }
 
     /**
