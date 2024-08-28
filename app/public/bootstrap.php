@@ -17,7 +17,7 @@ mb_http_input();
 mb_regex_encoding('UTF-8');
 
 // Setting up secutiry headers
-Response::setHeader('Content-Security-Policy: default-src \'self\'; script-src \'self\' https://trusted.cdn.com; object-src \'none\'');
+Response::setHeader("Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; object-src 'none'; frame-ancestors 'self'; base-uri 'self';");
 Response::setHeader('Referrer-Policy: no-referrer-when-downgrade');
 Response::setHeader('X-Content-Type-Options: nosniff');
 Response::setHeader('X-Frame-Options: SAMEORIGIN');
