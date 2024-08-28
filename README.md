@@ -1,6 +1,6 @@
 # PHP Project Template
 
-A basic PHP project template for Simple Dealers Tecnologia.
+A basic PHP project template.
 
 ## Prerequisites
 
@@ -43,31 +43,31 @@ A basic PHP project template for Simple Dealers Tecnologia.
 ```plaintext
 app/
 |-- bin/                                         # PHP scripts.
-|-- public/                                      # Client-side assets.
-|-- |-- static/                                  # Static files.
-|-- |-- |-- js/                                  # JavaScript files.
-|-- |-- |-- |-- pages/                           # JavaScript files for pages.
-|-- |-- |-- |-- resources/                       # Third-party JavaScript resources.
-|-- |-- |-- styles/                              # CSS files.
-|-- |-- |-- |-- pages/                           # CSS files for pages.
-|-- |-- bootstrap.php                            # Bootstrap main components.
+| -- public/                                      # Client-side assets. |
+| --------------------------------------------------------------------- |  |static/                                  # Static files.
+| --  | --  | -- js/                                  # JavaScript files. |
+| --- | --- | ----------------------------------------------------------- |  |pages/                           # JavaScript files for pages.
+| --  | --  | --  | -- resources/                       # Third-party JavaScript resources. |
+| --- | --- | --- |styles/                              # CSS files.
+| --  | --  | -- | -- pages/                           # CSS files for pages. |
+| --- | --- |bootstrap.php                            # Bootstrap main components.
 |-- |-- index.php                                # Front controller of the app.
-|-- src/                                         # Source code of the app.
-|-- |-- Core/                                    # Core functionalities (e.g., router, database connection).
-|-- |-- |-- Bases/                               # Base classes (e.g., controller, models, services).
-|-- |-- |-- Database/                            # Database functionalities.
-|-- |-- |-- Enums/                               # Application enums.
-|-- |-- |-- Exceptions/                          # Custom exception classes.
-|-- |-- |-- Http/                                # HTTP-related classes.
-|-- |-- |-- Middlewares/                         # Application middlewares.
-|-- |-- |-- Router/                              # Routing module.
-|-- |-- |-- View/                                # View module (using League Plates).
-|-- |-- Modules/                                 # Application entities.
-|-- |-- |-- Homepage/                            # Logic for the Homepage module (controllers, models, services).
-|-- templates/                                   # View templates.
-|-- |-- layouts/                                 # Layout templates.
-|-- |-- pages/                                   # Web page templates.
-|-- |-- partials/                                # Common components for web pages.
+| -- src/                                         # Source code of the app. |
+| ------------------------------------------------------------------------- |  |Core/                                    # Core functionalities (e.g., router, database connection).
+| --  | --  | -- Bases/                               # Base classes (e.g., controller, models, services). |
+| --- | --- | -------------------------------------------------------------------------------------------- |Database/                            # Database functionalities.
+| --  | --  | -- Enums/                               # Application enums. |
+| --- | --- | ------------------------------------------------------------ |Exceptions/                          # Custom exception classes.
+| --  | --  | -- Http/                                # HTTP-related classes. |
+| --- | --- | --------------------------------------------------------------- |Middlewares/                         # Application middlewares.
+| --  | --  | -- Router/                              # Routing module. |
+| --- | --- | --------------------------------------------------------- |View/                                # View module (using League Plates).
+| --  | -- Modules/                                 # Application entities. |
+| --- | ------------------------------------------------------------------- |  |Homepage/                            # Logic for the Homepage module (controllers, models, services).
+| -- templates/                                   # View templates. |
+| ----------------------------------------------------------------- |  |layouts/                                 # Layout templates.
+| --  | -- pages/                                   # Web page templates. |
+| --- | ----------------------------------------------------------------- |partials/                                # Common components for web pages.
 |-- tests/                                       # Directory for tests (TDD).
 |-- .env                                         # Environment configuration constants.
 |-- .env.template                                # Template for the .env file.
