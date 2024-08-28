@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Database;
 
-use App\Core\Enums\ExceptionCodes\ConnectionExceptionCodes\ConnectionExceptionCodesEnum;
+use App\Core\Enums\ExceptionCodes\DatabaseExceptionCodes\ConnectionExceptionCodesEnum;
 use App\Core\Exceptions\Database\ConnectionException;
 use PDO;
 use PDOException;
@@ -76,16 +76,15 @@ final class Connection
         string $databasePort,
         string $databaseUser,
         string $databasePassword,
-        array  $connectionAttributes
+        array $connectionAttributes
     ): PDO|null|string {
         try {
             if ($this->connection === null) {
-                $pdoDsn = "mysql:host={$databaseHost};dbname={$databaseName};port={$databasePort}";
+                $pdoDsn = "mysql:host={$databaseHost};dbname={$databaseName};port={$databasePort};charset=utf8mb4";
                 $this->connection = new PDO($pdoDsn, $databaseUser, $databasePassword, $connectionAttributes);
             }
         } catch (PDOException $ex) {
             error_log($ex->getMessage());
-
             throw new ConnectionException('Failed connecting to database.', $this->failedConnection);
         }
 

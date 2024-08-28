@@ -2,16 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Enums\ExceptionCodes\CacheExceptionCodes;
+namespace App\Core\Enums\ExceptionCodes\DatabaseExceptionCodes;
 
-/**
- * Enum CacheExceptionCodes
- *
- * Represents specific exception codes for a new singleton Redis cache database
- *
- * @package CastroItalo\EchoQuery\enums\exceptions
- */
-enum CacheExceptionCodes: int
+enum CacheExceptionCodesEnum: int
 {
     /**
      * Redis connection creation failed

@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-use App\Core\Database\Cache;
-use App\Core\Middlewares\HomepageMiddleware;
-use App\Modules\Homepage\Controllers\HomepageController;
+use App\Core\Http\Request;
 
 require_once __DIR__ . '/bootstrap.php';
 
-$cache = Cache::getInstance();
-
-$cache->deleteValue('a_new_key');
-var_dump($cache->getValue('a_new_key'));
-
 try {
-    $router->get('/', [HomepageController::class, 'homepage'], [HomepageMiddleware::class, 'homepageMiddleware']);
+    $routes->defineApplicationRoutes();
 
     $router->handleRequest(
-        $httpRequest->getRequestMethod(),
-        $httpRequest->getRequestUri()
+        Request::getRequestMethod(),
+        Request::getRequestUri()
     );
-} catch (Exception) {
-    $router->handleRequest('GET', '/internal-server-error');
+} catch (Exception $ex) {
+    // Show exception message only in localhost environment
+    if (Request::isLocalhost()) {
+        $ex->getMessage();
+        exit();
+    }
+
+    $router->handleRequest('GET', $_ENV['ROUTE_ERROR_INTERNAL_SERVER_ERROR']);
 }

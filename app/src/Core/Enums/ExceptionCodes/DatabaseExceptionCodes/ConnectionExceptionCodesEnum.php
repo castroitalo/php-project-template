@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Enums\ExceptionCodes\ConnectionExceptionCodes;
+namespace App\Core\Enums\ExceptionCodes\DatabaseExceptionCodes;
 
 /**
  * Enum ConnectionExceptionCodesEnum
@@ -10,7 +10,7 @@ namespace App\Core\Enums\ExceptionCodes\ConnectionExceptionCodes;
  * Represents specific exception codes for a new singleton databsae connection
  * creation.
  *
- * @package CastroItalo\EchoQuery\enums\exceptions
+ * @package App\Core\Enums\ExceptionCodes\DatabaseExceptionCodes
  */
 enum ConnectionExceptionCodesEnum: int
 {

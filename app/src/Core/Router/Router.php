@@ -41,7 +41,7 @@ final class Router
      */
     public function get(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['GET'][] = new Route(
@@ -61,7 +61,7 @@ final class Router
      */
     public function head(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['HEAD'][] = new Route(
@@ -81,7 +81,7 @@ final class Router
      */
     public function post(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['POST'][] = new Route(
@@ -101,7 +101,7 @@ final class Router
      */
     public function put(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['PUT'][] = new Route(
@@ -121,7 +121,7 @@ final class Router
      */
     public function delete(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['DELETE'][] = new Route(
@@ -141,7 +141,7 @@ final class Router
      */
     public function connect(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['CONNECT'][] = new Route(
@@ -161,7 +161,7 @@ final class Router
      */
     public function options(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['OPTIONS'][] = new Route(
@@ -181,7 +181,7 @@ final class Router
      */
     public function trace(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['TRACE'][] = new Route(
@@ -201,7 +201,7 @@ final class Router
      */
     public function patch(
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback = null
     ): void {
         $this->definedRoutes['PATCH'][] = new Route(

@@ -9,7 +9,7 @@ namespace App\Core\Enums\ExceptionCodes\RouterExceptionCodes;
  *
  * Represents specific exception codes for a new route creation.
  *
- * @package CastroItalo\EchoQuery\enums\exceptions
+ * @package App\Core\Enums\ExceptionCodes\RouterExceptionCodes
  */
 enum RouteExceptionCodesEnum: int
 {

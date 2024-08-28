@@ -1,5 +1,5 @@
 # Get PHP FPM
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -15,10 +15,6 @@ RUN docker-php-ext-install pdo_mysql zip
 
 # Install Redis extensions
 RUN pecl install redis && docker-php-ext-enable redis
-
-# Install SQlite
-RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev \
-    && docker-php-ext-install pdo_sqlite
 
 # Copy PHP configuration file
 COPY ./dev/php/config/php.ini /usr/local/etc/php/

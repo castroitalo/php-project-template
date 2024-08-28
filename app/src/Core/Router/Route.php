@@ -27,11 +27,11 @@ final class Route
      */
     public function __construct(
         readonly string $routePath,
-        readonly array  $routeControllerCallback,
+        readonly array $routeControllerCallback,
         readonly ?array $routeMiddlewareCallback        = null,
-        private  int    $invalidRoutePath               = RouteExceptionCodesEnum::InvalidRoutePath->value,
-        private  int    $invalidRouteControllerCallback = RouteExceptionCodesEnum::InvalidRouteControllerCallback->value,
-        private  int    $invalidRouteMiddlewareCallback = RouteExceptionCodesEnum::InvalidRouteMiddlewareCallback->value
+        private int $invalidRoutePath               = RouteExceptionCodesEnum::InvalidRoutePath->value,
+        private int $invalidRouteControllerCallback = RouteExceptionCodesEnum::InvalidRouteControllerCallback->value,
+        private int $invalidRouteMiddlewareCallback = RouteExceptionCodesEnum::InvalidRouteMiddlewareCallback->value
     ) {
         // Validate route path
         if (empty($routePath) || !is_string($routePath)) {

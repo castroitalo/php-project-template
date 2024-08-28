@@ -18,7 +18,7 @@ final class Response
      * @param int $responseStatusCode New response status code
      * @return void
      */
-    public function setResponseStatusCode(int $responseStatusCode): void
+    public static function setResponseStatusCode(int $responseStatusCode): void
     {
         http_response_code($responseStatusCode);
     }
@@ -29,7 +29,7 @@ final class Response
      * @param string $redirectPath URL to redirect app
      * @return void
      */
-    public function setRedirection(string $redirectPath): void
+    public static function setRedirection(string $redirectPath): void
     {
         header('Location: ' . $redirectPath);
         exit();
@@ -41,7 +41,7 @@ final class Response
      * @param string $header Header string
      * @return void
      */
-    public function setHeader(string $header): void
+    public static function setHeader(string $header): void
     {
         header($header);
     }
@@ -53,10 +53,10 @@ final class Response
      * @param int $statusCode HTTP status code
      * @return void
      */
-    public function sendJson(array $data, int $statusCode = 200): void
+    public static function sendJson(array $data, int $statusCode = 200): void
     {
-        $this->setHeader('Content-Type: application/json');
-        $this->setResponseStatusCode($statusCode);
+        self::setHeader('Content-Type: application/json');
+        self::setResponseStatusCode($statusCode);
         echo json_encode($data);
         exit();
     }

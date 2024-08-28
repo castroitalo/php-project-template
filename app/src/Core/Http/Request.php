@@ -17,7 +17,7 @@ final class Request
      *
      * @return string
      */
-    public function getRequestMethod(): string
+    public static function getRequestMethod(): string
     {
         return $_SERVER['REQUEST_METHOD'];
     }
@@ -27,8 +27,19 @@ final class Request
      *
      * @return string
      */
-    public function getRequestUri(): string
+    public static function getRequestUri(): string
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    }
+
+    /**
+     * Check if project is running on localhost or not
+     *
+     * @return bool
+     */
+    public static function isLocalhost(): bool
+    {
+        return str_contains($_SERVER['HTTP_HOST'], 'localhost') ||
+            str_contains($_SERVER['HTTP_HOST'], '127.0.0.1');
     }
 }

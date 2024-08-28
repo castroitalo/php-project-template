@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Error\Controllers;
 
 use App\Core\Bases\BaseController;
+use App\Core\Http\Response;
 
 /**
  * Controls every error requests
@@ -21,7 +22,7 @@ final class ErrorController extends BaseController
      */
     public function pageNotFound(): void
     {
-        $this->httpResponse->setResponseStatusCode(404);
+        Response::setResponseStatusCode(404);
         echo 'Page Not Found <br>';
     }
 
@@ -32,7 +33,7 @@ final class ErrorController extends BaseController
      */
     public function internalServerError(): void
     {
-        $this->httpResponse->setResponseStatusCode(500);
+        Response::setResponseStatusCode(500);
         echo 'Internal Server Error <br>';
     }
 }

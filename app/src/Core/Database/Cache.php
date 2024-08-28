@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Database;
 
-use App\Core\Enums\ExceptionCodes\CacheExceptionCodes\CacheExceptionCodes;
+use App\Core\Enums\ExceptionCodes\DatabaseExceptionCodes\CacheExceptionCodesEnum;
 use App\Core\Exceptions\Database\CacheException;
 use RuntimeException;
 use Redis;
@@ -38,9 +38,9 @@ final class Cache
      */
     private function __construct(
         private string $cacheHostname,
-        private int    $cachePort,
-        private int    $failedRedisConnectionExceptionCode = CacheExceptionCodes::FailedRedisConnection->value,
-        private int    $failedDeleteKeyExceptionCode       = CacheExceptionCodes::FailedDeleteKey->value
+        private int $cachePort,
+        private int $failedRedisConnectionExceptionCode = CacheExceptionCodesEnum::FailedRedisConnection->value,
+        private int $failedDeleteKeyExceptionCode       = CacheExceptionCodesEnum::FailedDeleteKey->value
     ) {
         $this->redis = new Redis();
 
@@ -60,8 +60,8 @@ final class Cache
     public static function getInstance(): Cache
     {
         if (self::$instance === null) {
-            $hostname       = $_ENV['DATABASE_CACHE_HOST'] ?? '127.0.0.1'; // Default to localhost if not set
-            $port           = $_ENV['DATABASE_CACHE_PORT'] ?? 6379; // Default Redis port
+            $hostname       = $_ENV['DATABASE_CACHING_HOST'] ?? '127.0.0.1'; // Default to localhost if not set
+            $port           = $_ENV['DATABASE_CACHING_PORT'] ?? 6379; // Default Redis port
             self::$instance = new self($hostname, (int) $port);
         }
 

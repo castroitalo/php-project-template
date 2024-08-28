@@ -107,7 +107,7 @@ final class RouterTest extends TestCase
     public function Router_test_route_creation_null_middleware(
         string $routeHttpMethod,
         string $routePath,
-        array  $routeControllerCallback
+        array $routeControllerCallback
     ): void {
         $this->router->$routeHttpMethod($routePath, $routeControllerCallback);
 
@@ -128,7 +128,7 @@ final class RouterTest extends TestCase
     public function Router_test_route_creation_non_null_middleware(
         string $routeHttpMethod,
         string $routePath,
-        array  $routeControllerCallback,
+        array $routeControllerCallback,
         ?array $routeMiddlewareCallback
     ): void {
         $this->router->$routeHttpMethod($routePath, $routeControllerCallback, $routeMiddlewareCallback);
