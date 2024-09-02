@@ -42,4 +42,22 @@ final class Request
         return str_contains($_SERVER['HTTP_HOST'], 'localhost') ||
             str_contains($_SERVER['HTTP_HOST'], '127.0.0.1');
     }
+
+    /**
+     * Get query parameters
+     *
+     * @return array
+     */
+    public static function getQueryParameters(): array
+    {
+        $queryParameters = [];
+
+        if (self::getRequestMethod() === 'GET' && !empty($_GET)) {
+            foreach ($_GET as $key => $value) {
+                $queryParameters[$key] = $value;
+            }
+        }
+
+        return $queryParameters;
+    }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="true" beStrictAboutOutputDuringTests="true" beStrictAboutChangesToGlobalState="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false" beStrictAboutCoverageMetadata="true">
+  <testsuites>
+    <testsuite name="Project Test Suite">
+      <directory>tests</directory>
+    </testsuite>
+    <testsuite name="Project Router Test Suite">
+      <directory>tests/Core/Router</directory>
+    </testsuite>
+    <testsuite name="Project Database Test Suite">
+      <directory>tests/Core/Database</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="DATABASE_DEV_NAME" value="app"/>
+    <env name="DATABASE_DEV_HOST" value="mariadb"/>
+    <env name="DATABASE_DEV_PORT" value="3306"/>
+    <env name="DATABASE_DEV_USERNAME" value="root"/>
+    <env name="DATABASE_DEV_PASSWORD" value=""/>
+  </php>
+  <source>
+    <include>
+      <directory suffix=".php">src/</directory>
+    </include>
+    <exclude>
+      <directory>src/Core/Bases</directory>
+      <directory>src/Core/Enums</directory>
+      <directory>src/Core/Exceptions</directory>
+      <directory>src/Core/Http</directory>
+      <directory>src/Core/Migrations</directory>
+      <directory>src/Core/View</directory>
+      <directory>vendor/</directory>
+    </exclude>
+  </source>
+</phpunit>

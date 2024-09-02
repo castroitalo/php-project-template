@@ -1,6 +1,6 @@
 # PHP Project Template
 
-A basic PHP project template.
+A basic PHP project template for Simple Dealers Tecnologia.
 
 ## Prerequisites
 
@@ -99,3 +99,14 @@ To create a web page called *Admin* for an admin login screen, follow these step
 3. *Add JavaScript and CSS*: Include a JavaScript file in the public/static/js/pages/ directory and a CSS file in the public/static/styles/pages/ directory.
 
 By following these steps, you ensure that all parts of your application are consistently organized and easy to manage.
+
+### Tests
+
+The use of TDD is important to keep code more secure and bugs free. Remember every time that you create a module to write tests for it before requesting a PR or committing.
+
+#### Executing existent tests
+To run tests enter the Docker Container and type:
+
+- `php vendor/bin/phpunit tests/`: To execute every test case.
+- `php vendor/bin/phpunit --testsuite "Project Router Test Suite"`: To execute an individual testsuite. In this case, the Router testsuite.
+- `php vendor/bin/phpunit tests/Core/Database/ConnectionTest.php`: To execute an individual test file.

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Router;
 
 use App\Core\Middlewares\HomepageMiddleware;
+use App\Modules\Error\Controllers\ErrorController;
 use App\Modules\Homepage\Controllers\HomepageController;
 
 /**
@@ -33,14 +34,26 @@ final class Routes
     }
 
     /**
-     * Define every homepage routes
+     * Define error routes
+     *
+     * @return void
+     */
+    private function defineErrorRoutes(): void
+    {
+        $this->router->get($_ENV['ROUTE_ERROR_PAGE_NOT_FOUND'], [ErrorController::class, 'pageNotFound']);
+        $this->router->get($_ENV['ROUTE_ERROR_INTERNAL_SERVER_ERROR'], [ErrorController::class, 'internalServerError']);
+    }
+
+    /**
+     * Define homepage routes
      *
      * @return void
      */
     private function defineHomepageRoutes(): void
     {
         $this->router->get($_ENV['ROUTE_HOMEPAGE'], [HomepageController::class, 'homepage'], [HomepageMiddleware::class, 'homepageMiddleware']);
-        $this->router->get($_ENV['ROUTE_HOMEPAGE_USERS'], [HomepageController::class, 'users']);
+        $this->router->get($_ENV['ROUTE_HOMEPAGE_LIST_USERS'], [HomepageController::class, 'usersList']);
+        $this->router->get($_ENV['ROUTE_HOMEPAGE_GET_USERS'], [HomepageController::class, 'usersGet']);
     }
 
     /**
@@ -50,6 +63,7 @@ final class Routes
      */
     public function defineApplicationRoutes(): void
     {
+        $this->defineErrorRoutes();                                             // Define error routes
         $this->defineHomepageRoutes();                                          // Define homepage routes
     }
 }

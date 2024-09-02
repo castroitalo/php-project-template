@@ -349,8 +349,7 @@ fabric.properties
 .phpunit.cache
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+.phpunit.cache
 
 # Build data
 /build/

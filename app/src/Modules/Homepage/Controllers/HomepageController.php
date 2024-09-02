@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Homepage\Controllers;
 
 use App\Core\Bases\BaseController;
+use App\Core\Http\Request;
 use App\Core\Http\Response;
 use App\Modules\Homepage\Models\HomepageUsersModel;
 use App\Modules\Homepage\Services\HomepageUsersService;
@@ -48,13 +49,26 @@ final class HomepageController extends BaseController
     }
 
     /**
-     * /users
+     * /users/list
      *
      * @return void
      */
-    public function users(): void
+    public function usersList(): void
     {
         $response = $this->serivce->listAllRegisteredUsers();
+
+        Response::sendJson($response['response_body'], (int)$response['response_http_code']);
+    }
+
+    /**
+     * /users/get
+     *
+     * @return void
+     */
+    public function usersGet(): void
+    {
+        $requestData = Request::getQueryParameters();
+        $response    = $this->serivce->getRegisteredUserById($requestData);
 
         Response::sendJson($response['response_body'], (int)$response['response_http_code']);
     }

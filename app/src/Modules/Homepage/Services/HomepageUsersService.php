@@ -48,4 +48,34 @@ final class HomepageUsersService extends BaseService
             return $this->mountResponseArray($_ENV['CONF_RESPONSE_HTTP_INTERNAL_SERVER_ERROR'], 'failed_listing_users');
         }
     }
+
+    /**
+     * Get user
+     *
+     * @param array $requestData
+     * @return array
+     */
+    public function getRegisteredUserById(array $requestData): array
+    {
+        try {
+            // Validate mandatory request data
+            if (
+                !$this->validateMandatoryRequestData(
+                    $requestData,
+                    [
+                        'user-id' => 'string'
+                    ]
+                )
+            ) {
+                return $this->mountResponseArray($_ENV['CONF_RESPONSE_HTTP_BAD_REQUEST'], 'bad_parameters');
+            }
+
+            // Get user data
+            $userData = $this->model->getUserById((int)$requestData['user-id']);
+
+            return $this->mountResponseArray($_ENV['CONF_RESPONSE_HTTP_OK'], 'success', (array)$userData);
+        } catch (Exception) {
+            return $this->mountResponseArray($_ENV['CONF_RESPONSE_HTTP_INTERNAL_SERVER_ERROR'], 'failed_getting_users');
+        }
+    }
 }

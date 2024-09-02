@@ -90,4 +90,16 @@ final class Connection
 
         return $this->connection;
     }
+
+    /**
+     * Close a singleton connection with database
+     *
+     * @return void
+     */
+    public function closeConnection(): void
+    {
+        if (!is_null($this->connection)) {
+            $this->connection = null;
+        }
+    }
 }

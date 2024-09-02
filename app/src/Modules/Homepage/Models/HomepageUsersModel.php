@@ -14,7 +14,7 @@ use CastroItalo\EchoQuery\Exceptions\BuilderException;
  *
  * @package App\Modules\Homepage\Models
  */
-final class HomepageUsersModel extends BaseModel
+class HomepageUsersModel extends BaseModel
 {
     /**
      * Get all users from database
@@ -25,7 +25,7 @@ final class HomepageUsersModel extends BaseModel
      */
     public function getUsers(): array
     {
-        $query = (new Builder())->select(
+        $query  = (new Builder())->select(
             ['*']
         )
             ->from($_ENV['DATABASE_DEV_NAME'] . '.' . $_ENV['DATABASE_TABLE_USERS'])
@@ -33,5 +33,27 @@ final class HomepageUsersModel extends BaseModel
         $result = $this->databaseHandler->get($query);
 
         return $result;
+    }
+
+    /**
+     * Get user by its ID
+     *
+     * @param int $userId User id to get user
+     * @return void
+     * @throws BuilderException
+     * @throws HandlerException
+     */
+    public function getUserById(int $userId): object
+    {
+        $query  = (new Builder())->select(
+            ['*']
+        )
+            ->from($_ENV['DATABASE_DEV_NAME'] . '.' . $_ENV['DATABASE_TABLE_USERS'])
+            ->where('user_id')
+            ->equalsTo(':user_id')
+            ->getQuery();
+        $result = $this->databaseHandler->get($query, [$userId]);
+
+        return $result[0];
     }
 }

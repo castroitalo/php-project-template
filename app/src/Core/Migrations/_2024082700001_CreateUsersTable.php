@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Migrations;
 
 use App\Core\Bases\BaseMigration;
+use App\Core\Database\Handler;
+use PDO;
 use PDOException;
 
 /**
@@ -48,47 +50,23 @@ final class _2024082700001_CreateUsersTable extends BaseMigration
     private function insertMockUsersData(): true|string
     {
         try {
-            $sql  = <<<USERS_CREATION_CODE
-                INSERT INTO app.users (
-                    user_name,
-                    user_surname,
-                    user_phone_number
-                ) VALUES (
-                    'Jhon',
-                    'Doe',
-                    '9999999999999'
-                 );
-                INSERT INTO app.users (
-                    user_name,
-                    user_surname,
-                    user_phone_number
-                ) VALUES (
-                    'Jane',
-                    'Doe',
-                    '9999999999999'
-                 );
-                INSERT INTO app.users (
-                    user_name,
-                    user_surname,
-                    user_phone_number
-                ) VALUES (
-                    'Jhonathan',
-                    'Doe',
-                    '9999999999999'
-                 );
-                INSERT INTO app.users (
-                    user_name,
-                    user_surname,
-                    user_phone_number
-                ) VALUES (
-                    'Joana',
-                    'Doe',
-                    '9999999999999'
-                 );
-            USERS_CREATION_CODE;
-            $stmt = $this->databaseConnection->prepare($sql);
-
-            $stmt->execute();
+            $handler = new Handler(
+                $_ENV['DATABASE_DEV_NAME'],
+                $_ENV['DATABASE_DEV_HOST'],
+                $_ENV['DATABASE_DEV_PORT'],
+                $_ENV['DATABASE_DEV_USERNAME'],
+                $_ENV['DATABASE_DEV_PASSWORD'],
+                [
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    PDO::ATTR_CASE               => PDO::CASE_NATURAL
+                ]
+            );
+            $handler->insert('users', ['user_name', 'user_surname', 'user_phone_number'], ['Jhon', 'Doe', '9999999999999']);
+            $handler->insert('users', ['user_name', 'user_surname', 'user_phone_number'], ['Jane', 'Doe', '9999999999999']);
+            $handler->insert('users', ['user_name', 'user_surname', 'user_phone_number'], ['Jonathan', 'Doe', '9999999999999']);
+            $handler->insert('users', ['user_name', 'user_surname', 'user_phone_number'], ['Joana', 'Doe', '9999999999999']);
 
             return true;
         } catch (PDOException $ex) {

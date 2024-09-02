@@ -20,15 +20,6 @@ final class Router
     public function __construct(
         private array $definedRoutes = []
     ) {
-        // Defined application's default routes
-        $this->definedRoutes['GET'][] = new Route(
-            $_ENV['ROUTE_ERROR_PAGE_NOT_FOUND'],
-            [ErrorController::class, 'pageNotFound']
-        );
-        $this->definedRoutes['GET'][] = new Route(
-            $_ENV['ROUTE_ERROR_INTERNAL_SERVER_ERROR'],
-            [ErrorController::class, 'pageNotFound']
-        );
     }
 
     /**
